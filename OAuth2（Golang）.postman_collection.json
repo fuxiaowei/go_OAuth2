@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "22dc3455-916f-4232-ab21-a8a08dfbebf2",
+		"name": "OAuth2（Golang）",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "授权码模式",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test_secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test_client_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/oauth/tokens?code=52944f8c-97d7-4402-8f71-e7d2f888f8e5&grant_type=authorization_code&redirect_uri=https://www.example.com&scope=read_write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"oauth",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "52944f8c-97d7-4402-8f71-e7d2f888f8e5"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.example.com"
+						},
+						{
+							"key": "scope",
+							"value": "read_write"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "简化模式(浏览器运行)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test_secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test_client_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/web/authorize?client_id=test_client_1&login_redirect_uri=%2Fweb%2Fauthorize&redirect_uri=https%3A%2F%2Fwww.example.com&response_type=token&scope=read_write&state=somestate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"web",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "test_client_1"
+						},
+						{
+							"key": "login_redirect_uri",
+							"value": "%2Fweb%2Fauthorize"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https%3A%2F%2Fwww.example.com"
+						},
+						{
+							"key": "response_type",
+							"value": "token"
+						},
+						{
+							"key": "scope",
+							"value": "read_write"
+						},
+						{
+							"key": "state",
+							"value": "somestate"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用户名密码模式",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test_secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test_client_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/oauth/tokens?grant_type=password&username=fuxiaowei@qq.com&password=fuxiaowei&scope=read_write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"oauth",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "username",
+							"value": "fuxiaowei@qq.com"
+						},
+						{
+							"key": "password",
+							"value": "fuxiaowei"
+						},
+						{
+							"key": "scope",
+							"value": "read_write"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "客户端模式",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test_secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test_client_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/oauth/tokens?grant_type=client_credentials&scope=read_write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"oauth",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						},
+						{
+							"key": "scope",
+							"value": "read_write"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "令牌校验",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test_secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test_client_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/oauth/introspect?token=fbf9d8ed-5d17-424a-8843-3c716053686f&token_type_hint=access_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"oauth",
+						"introspect"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "fbf9d8ed-5d17-424a-8843-3c716053686f"
+						},
+						{
+							"key": "token_type_hint",
+							"value": "access_token"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "令牌刷新",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test_secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test_client_1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/oauth/tokens?grant_type=refresh_token&refresh_token=44034eb6-2d57-4068-9256-07a301882d11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"oauth",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": "44034eb6-2d57-4068-9256-07a301882d11"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
